@@ -1,0 +1,11 @@
+.direnv/
+
+.gradle/
+
+.settings/
+.classpath
+.project
+kls_database.db
+
+bin/
+build/
