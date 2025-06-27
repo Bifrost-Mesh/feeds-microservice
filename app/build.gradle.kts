@@ -1,31 +1,49 @@
+import com.google.protobuf.gradle.id
+
 plugins {
   // Adds support for building a CLI application in Java.
   application
 
-  id("org.graalvm.buildtools.native") version "0.10.6"
+  alias(libs.plugins.graalvm.native)
+  alias(libs.plugins.spring.boot)
+  alias(libs.plugins.spring.dependency.management)
+	alias(libs.plugins.protobuf)
 }
 
 repositories {
-  // Use Maven Central for resolving dependencies.
   mavenCentral()
 }
 
 dependencies {
-  implementation("com.google.guava:guava:33.4.5-jre")
+  implementation(libs.guava)
+  implementation(libs.spring.grpc.spring.boot.starter)
+  implementation(libs.grpc.services)
+  implementation(libs.protobuf.java)
 
-  // Use JUnit Jupiter for testing.
-  testImplementation("org.junit.jupiter:junit-jupiter:5.12.1")
-
-  testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+  testImplementation(libs.junit.jupiter)
+  testRuntimeOnly(libs.junit.platform.launcher)
+	testImplementation(libs.spring.boot.starter.test)
+	testImplementation(libs.spring.grpc.test)
 }
 
-// Apply a specific Java toolchain to ease working on different environments.
-java { toolchain { languageVersion = JavaLanguageVersion.of(24) } }
+protobuf {
+	plugins {
+		id("grpc") {
+			artifact = libs.versions.grpc.get()
+        .let { version -> "io.grpc:protoc-gen-grpc-java:$version" }
+		}
+	}
 
-application {
-  // Define the main class for the application.
-  // IMPORTANT : Don't use the 'ö' character in package name.
-  mainClass = "org.BifrostMesh.FeedsMicroservice.App"
+	generateProtoTasks {
+		all().forEach {
+			it.plugins {
+				id("grpc") {
+					option("jakarta_omit")
+					option("@generated=omit")
+				}
+			}
+		}
+	}
 }
 
 graalvmNative {
@@ -65,4 +83,16 @@ graalvmNative {
       imageName = "feeds-microservice"
     }
   }
+}
+
+// Apply a specific Java toolchain to ease working on different environments.
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(24)
+  }
+}
+
+application {
+  // Define the main class for the application.
+  mainClass = "org.BifrostMesh.FeedsMicroservice.App"
 }

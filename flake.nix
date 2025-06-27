@@ -20,11 +20,11 @@
         devShells.default = mkShell {
           nativeBuildInputs = [
             jdk
+            (gradle.override { java = jdk; })
+            (kotlin.override { jre = jdk; })
             graalvmPackages.graalvm-ce
 
-            (gradle.override { java = jdk; })
-
-            (kotlin.override { jre = jdk; })
+            protobuf
           ];
 
           buildInputs = [ ];

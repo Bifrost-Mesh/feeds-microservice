@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package apis.feeds;
+
+import "google/protobuf/empty.proto";
+
+// The generated Java class for each message will be placed in a separate .java file.
+// This makes it much easier to move messages from one .proto file to another.
+option java_multiple_files = true;
+
+// There is a Java class generated for the .proto file itself.
+// The name of the class for the file will be automatically generated if not specified. However,
+// the rules for how that name is generated are overly-complicated and non-obvious.
+// The best policy is to explicitly set the java_outer_classname option to the .proto file name
+// converted to PascalCase with the '.' removed.
+option java_outer_classname = "FeedsMiroserviceProto";
+
+// The Java package for generated bindings will be automatically set to the proto package. However,
+// this is usually not conformant with Java conventions.
+// To ensure a conventional Java package name, we recommend explicitly setting the java_package
+// option. For example, within Google, the convention is to prepend com.google. to the proto
+// package.
+option java_package = "org.bifrostmesh.feedsmicroservice.server.apis.feeds.proto";
+
+service FeedsService {
+  rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+
+  rpc GetFeed(GetFeedRequest) returns (GetFeedResponse);
+}
+
+message GetFeedRequest {
+  PaginationArgs pagination_args = 2;
+}
+
+message GetFeedResponse {
+  repeated int32 post_ids = 1;
+}
+
+message PaginationArgs {
+  uint64 offset    = 1;
+  uint64 page_size = 2;
+}
