@@ -23,6 +23,7 @@
             graalvmPackages.graalvm-ce
 
             (gradle.override { java = jdk; })
+
             (kotlin.override { jre = jdk; })
           ];
 

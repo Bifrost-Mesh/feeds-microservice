@@ -12,4 +12,5 @@ plugins {
 }
 
 rootProject.name = "feeds-microservice"
+
 include("app")

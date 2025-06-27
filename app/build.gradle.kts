@@ -11,21 +11,16 @@ repositories {
 }
 
 dependencies {
+  implementation("com.google.guava:guava:33.4.5-jre")
+
   // Use JUnit Jupiter for testing.
-  testImplementation(libs.junit.jupiter)
+  testImplementation("org.junit.jupiter:junit-jupiter:5.12.1")
 
   testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
-  // This dependency is used by the application.
-  implementation(libs.guava)
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
-java {
-  toolchain {
-    languageVersion = JavaLanguageVersion.of(24)
-  }
-}
+java { toolchain { languageVersion = JavaLanguageVersion.of(24) } }
 
 application {
   // Define the main class for the application.
