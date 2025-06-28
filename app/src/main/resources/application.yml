@@ -1,0 +1,18 @@
+spring:
+  threads:
+    virtual:
+      enabled: true
+
+  main:
+    # One side effect of virtual threads is that they are daemon threads. A JVM will exit if all of
+    # its threads are daemon threads. This behavior can be a problem when you rely on @Scheduled
+    # beans, for example, to keep your application alive. If you use virtual threads, the scheduler
+    # thread is a virtual thread and therefore a daemon thread and won’t keep the JVM alive. This
+    # not only affects scheduling and can be the case with other technologies too.
+    # This ensures that the JVM is kept alive, even if all threads are virtual threads.
+    keep-alive: true
+
+    banner-mode: off
+
+  grpc:
+    server: {}

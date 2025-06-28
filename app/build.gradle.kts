@@ -7,7 +7,7 @@ plugins {
   alias(libs.plugins.graalvm.native)
   alias(libs.plugins.spring.boot)
   alias(libs.plugins.spring.dependency.management)
-	alias(libs.plugins.protobuf)
+  alias(libs.plugins.protobuf)
 }
 
 repositories {
@@ -16,34 +16,43 @@ repositories {
 
 dependencies {
   implementation(libs.guava)
-  implementation(libs.spring.grpc.spring.boot.starter)
+  implementation(libs.spring.grpc.spring.boot.starter) // Provides a Netty based gRPC server.
+                                                       // We can configure it from application.yml.
   implementation(libs.grpc.services)
+  implementation(libs.grpc.netty.shaded)
   implementation(libs.protobuf.java)
 
   testImplementation(libs.junit.jupiter)
   testRuntimeOnly(libs.junit.platform.launcher)
-	testImplementation(libs.spring.boot.starter.test)
-	testImplementation(libs.spring.grpc.test)
+  testImplementation(libs.spring.boot.starter.test)
+  testImplementation(libs.spring.grpc.test)
+}
+
+modules {
+  module("io.grpc:grpc-netty") {
+    replacedBy("io.grpc:grpc-netty-shaded", "Use Netty shaded instead of regular Netty")
+  }
 }
 
 protobuf {
-	plugins {
-		id("grpc") {
-			artifact = libs.versions.grpc.get()
-        .let { version -> "io.grpc:protoc-gen-grpc-java:$version" }
-		}
-	}
+  plugins {
+    id("grpc") {
+      artifact =
+        libs.versions.grpc.get()
+          .let { version -> "io.grpc:protoc-gen-grpc-java:$version" }
+    }
+  }
 
-	generateProtoTasks {
-		all().forEach {
-			it.plugins {
-				id("grpc") {
-					option("jakarta_omit")
-					option("@generated=omit")
-				}
-			}
-		}
-	}
+  generateProtoTasks {
+    all().forEach {
+      it.plugins {
+        id("grpc") {
+          option("jakarta_omit")
+          option("@generated=omit")
+        }
+      }
+    }
+  }
 }
 
 graalvmNative {
@@ -94,5 +103,5 @@ java {
 
 application {
   // Define the main class for the application.
-  mainClass = "org.BifrostMesh.FeedsMicroservice.App"
+  mainClass = "org.bifrostmesh.feedsmicroservice.App"
 }

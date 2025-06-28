@@ -1,6 +1,5 @@
 # Feeds Microservice
 
-![OpenJDK Badge](https://img.shields.io/badge/OpenJDK-000?logo=openjdk&logoColor=fff&style=for-the-badge)
 ![Spring Badge](https://img.shields.io/badge/Spring-6DB33F?logo=spring&logoColor=fff&style=for-the-badge)
 ![Spring Boot Badge](https://img.shields.io/badge/Spring%20Boot-6DB33F?logo=springboot&logoColor=fff&style=for-the-badge)
 ![Gradle Badge](https://img.shields.io/badge/Gradle-02303A?logo=gradle&logoColor=fff&style=for-the-badge)
@@ -34,3 +33,7 @@
 - [Spring Boot with Netty vs. Spring Boot with Jetty — Embedded Java Servers](https://medium.com/@a.kago1988/spring-boot-with-netty-vs-jetty-the-battle-of-embedded-servers-99027eb82cfd)
 
 - [Netty data model, threading, and gotchas](https://medium.com/@akhaku/netty-data-model-threading-and-gotchas-cab820e4815a)
+
+- [Virtual Threads](https://docs.oracle.com/en/java/javase/21/core/virtual-threads.html)
+
+- [Structuring Your Code](https://docs.spring.io/spring-boot/reference/using/structuring-your-code.html)
