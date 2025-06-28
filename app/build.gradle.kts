@@ -19,19 +19,12 @@ dependencies {
   implementation(libs.spring.grpc.spring.boot.starter) // Provides a Netty based gRPC server.
                                                        // We can configure it from application.yml.
   implementation(libs.grpc.services)
-  implementation(libs.grpc.netty.shaded)
   implementation(libs.protobuf.java)
 
   testImplementation(libs.junit.jupiter)
   testRuntimeOnly(libs.junit.platform.launcher)
   testImplementation(libs.spring.boot.starter.test)
   testImplementation(libs.spring.grpc.test)
-}
-
-modules {
-  module("io.grpc:grpc-netty") {
-    replacedBy("io.grpc:grpc-netty-shaded", "Use Netty shaded instead of regular Netty")
-  }
 }
 
 protobuf {

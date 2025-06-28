@@ -37,3 +37,9 @@
 - [Virtual Threads](https://docs.oracle.com/en/java/javase/21/core/virtual-threads.html)
 
 - [Structuring Your Code](https://docs.spring.io/spring-boot/reference/using/structuring-your-code.html)
+
+- [Spring Beans Showdown: Unraveling the Mystery of @Component vs @Bean!](https://www.youtube.com/watch?v=CWEQ-1vff1o)
+
+- [Spring @Configuration Annotation - What are Proxy Bean Methods?](https://www.youtube.com/watch?v=VoK6-OiSPu4)
+
+- [Spring Tips: Spring Modulith ](https://www.youtube.com/watch?v=MYEx0kO2-8A)
