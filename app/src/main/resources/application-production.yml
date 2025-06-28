@@ -6,9 +6,15 @@ spring:
     ansi:
       enabled: NEVER
 
+  grpc:
+    server:
+      reflection:
+        enabled: false
+
 logging:
   level:
     root: "warn"
+
   structured:
     format:
       console: ecs
