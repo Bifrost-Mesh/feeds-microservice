@@ -4,6 +4,29 @@
 ![Spring Boot Badge](https://img.shields.io/badge/Spring%20Boot-6DB33F?logo=springboot&logoColor=fff&style=for-the-badge)
 ![Gradle Badge](https://img.shields.io/badge/Gradle-02303A?logo=gradle&logoColor=fff&style=for-the-badge)
 
+## Development Environment setup
+
+Prerequisites :
+
+- [Nix](https://github.com/DeterminateSystems/nix-installer)
+- [Direnv](https://direnv.net/)
+
+Once you have them installed :
+
+1. Allow `direnv` to automatically land you into the **Nix development shell environment**, whenever you cd into this directory :
+    ```shell script
+    direnv allow
+    ```
+
+2. Generate Java code from the [protobuf definitions](./app/src/main/proto) by running :
+    ```shell script
+    gradle generateProto
+    ```
+
+> If you're using Neovim, then seldom there will be some libraries which will not get added to the classpath automatically.
+> Running `gradle eclipse --no-configuration-cache` will fix the issue.
+> The [app/.classpath](./app/.classpath), which JDTLS relies on to provide you autocompletion, will get updated 😃.
+
 ## REFERENCEs
 
 **Java** :
