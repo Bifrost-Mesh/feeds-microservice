@@ -2,27 +2,25 @@ package org.bifrostmesh.feedsmicroservice.feeds;
 
 import org.bifrostmesh.feedsmicroservice.server.apis.feeds.proto.GetFeedRequest;
 import org.bifrostmesh.feedsmicroservice.server.apis.feeds.proto.GetFeedResponse;
-import org.bifrostmesh.feedsmicroservice.server.apis.feeds.proto.FeedsServiceGrpc.FeedsServiceImplBase;
+import org.bifrostmesh.feedsmicroservice.server.apis.feeds.proto.ReactorFeedsServiceGrpc.FeedsServiceImplBase;
 import org.springframework.stereotype.Service;
 
 import com.google.protobuf.Empty;
 
-import io.grpc.stub.StreamObserver;
+import reactor.core.publisher.Mono;
 
 @Service
 public class FeedsServerService extends FeedsServiceImplBase {
 
   @Override
-  public void ping(Empty request, StreamObserver<Empty> responseObserver) {
-    final var response = Empty.getDefaultInstance();
-
-    responseObserver.onNext(response);
-    responseObserver.onCompleted();
+  public Mono<Empty> ping(Empty request) {
+    return Mono.just(
+        Empty.getDefaultInstance());
   }
 
   @Override
-  public void getFeed(GetFeedRequest request, StreamObserver<GetFeedResponse> responseObserver) {
+  public Mono<GetFeedResponse> getFeed(Mono<GetFeedRequest> request) {
     // TODO Implement.
-    super.getFeed(request, responseObserver);
+    return super.getFeed(request);
   }
 }

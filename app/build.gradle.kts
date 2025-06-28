@@ -1,6 +1,8 @@
 import com.google.protobuf.gradle.id
 
 plugins {
+  id("eclipse")
+
   // Adds support for building a CLI application in Java.
   application
 
@@ -15,16 +17,22 @@ repositories {
 }
 
 dependencies {
+  compileOnly(libs.javax.annotation.api)
+
   implementation(libs.guava)
   implementation(libs.spring.grpc.spring.boot.starter) // Provides a Netty based gRPC server.
                                                        // We can configure it from application.yml.
   implementation(libs.grpc.services)
   implementation(libs.protobuf.java)
+  implementation(libs.reactor.core)
+  implementation(libs.reactor.grpc.stub)
+  implementation(libs.spring.boot.starter.redis)
 
   testImplementation(libs.junit.jupiter)
-  testRuntimeOnly(libs.junit.platform.launcher)
   testImplementation(libs.spring.boot.starter.test)
   testImplementation(libs.spring.grpc.test)
+
+  testRuntimeOnly(libs.junit.platform.launcher)
 }
 
 protobuf {
@@ -33,6 +41,12 @@ protobuf {
       artifact =
         libs.versions.grpc.get()
           .let { version -> "io.grpc:protoc-gen-grpc-java:$version" }
+    }
+
+    id("reactor") {
+      artifact =
+        libs.versions.reactor.grpc.get()
+          .let { version -> "com.salesforce.servicelibs:reactor-grpc:$version" }
     }
   }
 
@@ -43,6 +57,8 @@ protobuf {
           option("jakarta_omit")
           option("@generated=omit")
         }
+
+        id("reactor") {}
       }
     }
   }

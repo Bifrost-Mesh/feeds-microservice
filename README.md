@@ -38,7 +38,7 @@
 
 - [Protocol Buffers Documentation : Java Generated Code Guide](https://protobuf.dev/reference/java/java-generated/)
 
-**Spring** :
+**Spring Ecosystem** :
 
 - [Spring Boot with Netty vs. Spring Boot with Jetty — Embedded Java Servers](https://medium.com/@a.kago1988/spring-boot-with-netty-vs-jetty-the-battle-of-embedded-servers-99027eb82cfd)
 
@@ -51,3 +51,7 @@
 - [Spring @Configuration Annotation - What are Proxy Bean Methods?](https://www.youtube.com/watch?v=VoK6-OiSPu4)
 
 - [Spring Tips: Spring Modulith ](https://www.youtube.com/watch?v=MYEx0kO2-8A)
+
+**Reactive programming** :
+
+- [Reactor in Action - Simon Baslé, Victor Grazi](https://www.youtube.com/watch?v=kwuu1efzkf4)
