@@ -9,12 +9,12 @@ import org.springframework.grpc.server.ServerBuilderCustomizer;
 import io.grpc.netty.NettyServerBuilder;
 
 @Configuration(proxyBeanMethods = false)
-public class BaseConfiguration {
+public class GrpcConfiguration {
 
-  // Use Java virtual threads for the embedded Netty server.
   @Bean
   public ServerBuilderCustomizer<NettyServerBuilder> nettyServerBuilderCustomizer() {
     return builder -> {
+      // Use Java virtual threads for the embedded Netty server.
       builder.executor(Executors.newThreadPerTaskExecutor(Thread.ofVirtual().factory()));
     };
   }

@@ -29,14 +29,14 @@ service FeedsService {
 }
 
 message GetFeedRequest {
-  PaginationArgs pagination_args = 2;
+  PageRequest page_request = 2;
 }
 
 message GetFeedResponse {
   repeated int32 post_ids = 1;
 }
 
-message PaginationArgs {
-  uint64 offset    = 1;
-  uint64 page_size = 2;
+message PageRequest {
+  uint64 page_size   = 1;
+  uint64 page_number = 2;
 }

@@ -18,8 +18,13 @@ repositories {
 
 dependencies {
   compileOnly(libs.javax.annotation.api)
+  compileOnly(libs.lombok)
+
+  annotationProcessor(libs.javax.annotation.api)
+  annotationProcessor(libs.lombok)
 
   implementation(libs.guava)
+  implementation(libs.spring.boot.starter)
   implementation(libs.spring.grpc.spring.boot.starter) // Provides a Netty based gRPC server.
                                                        // We can configure it from application.yml.
   implementation(libs.grpc.services)
@@ -27,6 +32,7 @@ dependencies {
   implementation(libs.reactor.core)
   implementation(libs.reactor.grpc.stub)
   implementation(libs.spring.boot.starter.redis)
+  implementation(libs.lettuce.core)
 
   testImplementation(libs.junit.jupiter)
   testImplementation(libs.spring.boot.starter.test)

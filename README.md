@@ -75,6 +75,16 @@ Once you have them installed :
 
 - [Spring Tips: Spring Modulith ](https://www.youtube.com/watch?v=MYEx0kO2-8A)
 
+- [Developing reactive application with Spring WebFlux and Spring Data Redis - Part 1 of 2](https://www.youtube.com/watch?v=KrxXdnCxiFg)
+
+- [Simple Spring Boot Pagination With Pageable & Data Repositories](https://www.youtube.com/watch?v=Z0_6zg0Xcls)
+
+- [#7 Autowire using Spring Boot ](https://www.youtube.com/watch?v=ET39IFffr24)
+
+- [Structured logging in Spring Boot 3.4](https://spring.io/blog/2024/08/23/structured-logging-in-spring-boot-3-4)
+
+- [Working with Objects through RedisTemplate](https://docs.spring.io/spring-data/redis/reference/redis/template.html)
+
 **Reactive programming** :
 
 - [Reactor in Action - Simon Baslé, Victor Grazi](https://www.youtube.com/watch?v=kwuu1efzkf4)
