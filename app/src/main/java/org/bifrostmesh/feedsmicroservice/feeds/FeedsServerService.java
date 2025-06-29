@@ -21,34 +21,34 @@ public class FeedsServerService extends FeedsServiceImplBase {
   @Override
   public Mono<Empty> ping(Empty request) {
     return Mono.just(
-        Empty.getDefaultInstance());
+      Empty.getDefaultInstance());
   }
 
   @Override
   public Mono<GetFeedResponse> getFeed(Mono<GetFeedRequest> requestMono) {
     return requestMono.zipWith(this.getUserIdFromContext(),
-        (request, userId) -> {
-          var pageRequest = PageRequest.of(
-              (int) request.getPageRequest().getPageNumber(),
-              (int) request.getPageRequest().getPageSize());
+      (request, userId) -> {
+        var pageRequest = PageRequest.of(
+          (int) request.getPageRequest().getPageNumber(),
+          (int) request.getPageRequest().getPageSize());
 
-          return this.service.getFeed(userId, pageRequest);
-        })
-        .flatMap(postIdsFlux -> postIdsFlux.collectList())
-        .map(postIds -> {
-          return GetFeedResponse.newBuilder().addAllPostIds(postIds).build();
-        });
+        return this.service.getFeed(userId, pageRequest);
+      })
+      .flatMap(postIdsFlux -> postIdsFlux.collectList())
+      .map(postIds -> {
+        return GetFeedResponse.newBuilder().addAllPostIds(postIds).build();
+      });
   }
 
   private Mono<Integer> getUserIdFromContext() {
     var unparsedUserId = Context.key("user_id").get().toString();
     return Mono.just(unparsedUserId)
-        .map(Integer::parseInt)
-        .onErrorMap(error -> {
-          return Status.FAILED_PRECONDITION
-              .withDescription("Failed parsing user-id from gRPC metadata")
-              .withCause(error)
-              .asRuntimeException();
-        });
+      .map(Integer::parseInt)
+      .onErrorMap(error -> {
+        return Status.FAILED_PRECONDITION
+          .withDescription("Failed parsing user-id from gRPC metadata")
+          .withCause(error)
+          .asRuntimeException();
+      });
   }
 }

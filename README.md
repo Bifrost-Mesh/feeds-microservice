@@ -23,9 +23,25 @@ Once you have them installed :
     gradle generateProto
     ```
 
+## Neovim setup
+
+I'm using [LazyVim's Java preset](https://www.lazyvim.org/extras/lang/java).
+
 > If you're using Neovim, then seldom there will be some libraries which will not get added to the classpath automatically.
 > Running `gradle eclipse --no-configuration-cache` will fix the issue.
 > The [app/.classpath](./app/.classpath), which JDTLS relies on to provide you autocompletion, will get updated 😃.
+
+I don't have the time and luxury to figure out **how to specify project formatting options** to JDTLS 🙂. For now, I've added the following in **~/.cache/nvim/jdtls/feeds-microservice/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.core.prefs** :
+
+```prefs
+org.eclipse.jdt.core.formatter.continuation_indentation=1
+org.eclipse.jdt.core.formatter.continuation_indentation_for_array_initializer=1
+
+org.eclipse.jdt.core.formatter.comment.format_block_comments=false
+org.eclipse.jdt.core.formatter.comment.format_javadoc_comments=false
+
+org.eclipse.jdt.core.formatter.comment.format_line_comments=false
+```
 
 ## REFERENCEs
 
@@ -88,3 +104,5 @@ Once you have them installed :
 **Reactive programming** :
 
 - [Reactor in Action - Simon Baslé, Victor Grazi](https://www.youtube.com/watch?v=kwuu1efzkf4)
+
+- [30 Error handling in reactive programming (Reactive programming with Java - full course)](https://www.youtube.com/watch?v=xzn2KbmkcPE)

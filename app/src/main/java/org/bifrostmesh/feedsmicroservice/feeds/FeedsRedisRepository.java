@@ -21,16 +21,16 @@ public class FeedsRedisRepository implements FeedsRepository {
     String redisListKey = String.format("feeds:", userId);
 
     long start = pageRequest.getOffset(),
-        end = start + pageRequest.getPageSize();
+      end = start + pageRequest.getPageSize();
 
     return this.redis.opsForList()
-        .range(redisListKey, start, end)
-        .map(Integer::parseInt)
-        .onErrorContinue((error, invalidPostId) -> {
-          this.logger.atWarn()
-              .setMessage("Failed parsing post-id")
-              .setCause(error)
-              .addKeyValue("post-id", invalidPostId);
-        });
+      .range(redisListKey, start, end)
+      .map(Integer::parseInt)
+      .onErrorContinue((error, invalidPostId) -> {
+        this.logger.atWarn()
+          .setMessage("Failed parsing post-id")
+          .setCause(error)
+          .addKeyValue("post-id", invalidPostId);
+      });
   }
 }

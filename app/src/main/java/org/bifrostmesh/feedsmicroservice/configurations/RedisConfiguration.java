@@ -22,7 +22,7 @@ public class RedisConfiguration {
   // multiple instances.
   @Bean
   ReactiveRedisTemplate<String, String> reactiveRedisTemplate(
-      ReactiveRedisConnectionFactory connectionFactory) {
+    ReactiveRedisConnectionFactory connectionFactory) {
 
     return new ReactiveRedisTemplate<>(connectionFactory, RedisSerializationContext.string());
   }
